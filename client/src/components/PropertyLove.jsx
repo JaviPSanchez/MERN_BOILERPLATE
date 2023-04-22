@@ -7,6 +7,8 @@ const FeaturedProperties = () => {
     "/hotels/getAllFeaturedHotels?featured=true&limit=4"
   );
 
+  console.log(data);
+
   return (
     <div className="w-full flex flex-col justify-center items-center gap-4">
       <h1 className="w-full max-w-5xl text-xl font-bold mt-6">

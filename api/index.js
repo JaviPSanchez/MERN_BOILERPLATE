@@ -26,12 +26,8 @@ app.get("/", (req, res) => {
   res.send("Hello!");
 });
 
-//Middlewares
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+app.use(cors());
+
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRoute);
@@ -40,6 +36,7 @@ app.use("/api/hotels", authHotels);
 app.use("/api/property", authProperty);
 app.use("/api/rooms", authRooms);
 app.use((err, req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong";
   return res.status(errorStatus).json({
@@ -48,18 +45,14 @@ app.use((err, req, res, next) => {
     message: errorMessage,
     stack: err.stack,
   });
+  next();
 });
 
-//En caso de problema de conexion
 mongoose.connection.on("disconnected", () => {
   console.log("mongoDB disconnected!");
 });
-//Si queremos comprobar la conexión:
-// mongoose.connection.on("connected", () => {
-//   console.log("mongoDB connected!");
-// });
 
-app.listen(8800, () => {
+app.listen(process.env.PORT, () => {
   connect();
-  console.log("API Working!");
+  console.log(`API Working! Listening in port ${process.env.PORT}`);
 });

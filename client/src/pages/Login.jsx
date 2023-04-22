@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
+  const axiosInstance = Axios.create({
+    baseURL: process.env.REACT_APP_API_URL,
+  });
   const [credentials, setCredentials] = useState({
     username: undefined,
     password: undefined,
@@ -27,7 +30,7 @@ const Login = () => {
     dispatch({ type: "LOGIN_START" });
     try {
       console.log(credentials); // {username: 'admin', password: 'Test1234@'}
-      const res = await Axios.post("/auth/login", credentials);
+      const res = await axiosInstance.post("/auth/login", credentials);
       console.log(res.data.details); //undefined
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
 

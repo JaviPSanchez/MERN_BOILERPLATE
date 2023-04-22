@@ -1,5 +1,6 @@
 import React from "react";
 import { Oval } from "react-loader-spinner";
+// import { randomUUID } from "crypto";
 
 export default function Skeleton({ type }) {
   const COUNTER_CITY = 3;
@@ -7,19 +8,19 @@ export default function Skeleton({ type }) {
   const COUNTER_LOVE = 4;
   const FeedSkeletonCity = () => (
     <div
-      key={crypto.randomUUID()}
+      // key={crypto.randomUUID()}
       className="rounded-xl h-[250px] flex-1 bg-darkGrey bg-opacity-20 animate-pulse"
     ></div>
   );
   const FeedSkeletonProperty = () => (
     <div
-      key={crypto.randomUUID()}
+      // key={crypto.randomUUID()}
       className="rounded-xl h-[250px] flex-1 bg-darkGrey bg-opacity-20 animate-pulse"
     ></div>
   );
   const FeedSkeletonLove = () => (
     <div
-      key={crypto.randomUUID()}
+      // key={crypto.randomUUID()}
       className="rounded-xl h-[250px] flex-1 bg-darkGrey bg-opacity-20 animate-pulse"
     ></div>
   );
