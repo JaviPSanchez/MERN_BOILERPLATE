@@ -1,6 +1,7 @@
 import express from "express";
-import dotenv from "dotenv";
+const app = express();
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 import authRoute from "./routes/auth.js";
 import authUsers from "./routes/users.js";
 import authHotels from "./routes/hotels.js";
@@ -9,7 +10,6 @@ import authProperty from "./routes/property.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
-const app = express();
 dotenv.config();
 
 //Initial connection
@@ -21,13 +21,14 @@ const connect = async () => {
     throw error;
   }
 };
+mongoose.set("strictQuery", true);
 
-app.get("/", (req, res) => {
-  res.send("Hello!");
-});
-
+// app.use(
+//   cors({
+//     origin: "http://89.117.37.12:8800",
+//   })
+// );
 app.use(cors());
-
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRoute);
@@ -36,7 +37,6 @@ app.use("/api/hotels", authHotels);
 app.use("/api/property", authProperty);
 app.use("/api/rooms", authRooms);
 app.use((err, req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
   const errorStatus = err.status || 500;
   const errorMessage = err.message || "Something went wrong";
   return res.status(errorStatus).json({

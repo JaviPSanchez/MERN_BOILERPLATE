@@ -10,9 +10,7 @@ import styles from "../styles/Global";
 import { Oval } from "react-loader-spinner";
 
 const ListByCity = () => {
-  //Para usar los states que pasamos de Header
   const location = useLocation();
-  console.log(location);
   const [destination, setDestination] = useState(location.state.destination);
   const [dates, setDates] = useState(location.state.dates);
   const [options, setOptions] = useState(location.state.options);
@@ -20,11 +18,6 @@ const ListByCity = () => {
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
 
-  // const { data, loading, error, reFetch } = useFetch(
-  //   `/hotels/getAllHotelsByCity?city=${destination}&min=${min || 0}&max=${
-  //     max || 999
-  //   }`
-  // );
   const { data, loading, error, reFetch } = useFetch(
     `/hotels/getAllHotelsByCity?city=${destination}`
   );
