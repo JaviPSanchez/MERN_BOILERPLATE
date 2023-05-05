@@ -16,6 +16,7 @@ const Datatable = ({ columns, listType }) => {
   const [list, setList] = useState([]);
   const location = useLocation();
   const path = location.pathname.split("/")[1];
+  console.log(path);
   const { data, loading } = useFetch(`/${path}`);
 
   console.log(data);

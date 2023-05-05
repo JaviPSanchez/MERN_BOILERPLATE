@@ -23,11 +23,6 @@ const connect = async () => {
 };
 mongoose.set("strictQuery", true);
 
-// app.use(
-//   cors({
-//     origin: "http://89.117.37.12:8800",
-//   })
-// );
 app.use(cors());
 app.use(cookieParser());
 app.use(express.json());

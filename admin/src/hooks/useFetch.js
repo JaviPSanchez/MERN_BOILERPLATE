@@ -8,6 +8,7 @@ const useFetch = (url) => {
   const axiosInstance = Axios.create({
     baseURL: process.env.REACT_APP_API_URL,
   });
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
